@@ -4,7 +4,7 @@ import { AppService } from './app.service';
 import { Todo1Controller } from './todo1/todo1.controller';
 import { Todo1Service } from './todo1/todo1.service';
 import { Todo1Module } from './todo1/todo1.module';
-import { DataSource } from 'typeorm';
+
 import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
