@@ -30,12 +30,6 @@ export class Todo1Service {
   }
 
   async remove(id: string) {
-    const todoToDelete = await this.findOne(id);
-    if (!todoToDelete) {
-      return 'the post doesnt exist !';
-    } else {
-      this.todoRepository.remove(todoToDelete);
-      return 'post deleted succesfully ';
-    }
+    const todoToDelete = await this.todoModel.findOneAndDelete({where: {_id :id} })
   }
 }

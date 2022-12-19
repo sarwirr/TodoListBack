@@ -9,6 +9,7 @@ import { Todo, TodoSchema } from './entities/todo1.entity';
     MongooseModule.forFeature([{ name: Todo.name, schema: TodoSchema }]),
   ],
   controllers: [Todo1Controller],
+  exports:[Todo1Service],
   providers: [Todo1Service],
 })
 export class Todo1Module {}

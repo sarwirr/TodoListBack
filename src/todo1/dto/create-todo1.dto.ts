@@ -1,1 +1,3 @@
-export class CreateTodo1Dto {}
+export class CreateTodo1Dto {
+    name: string
+}
