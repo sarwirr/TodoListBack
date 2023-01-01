@@ -34,7 +34,7 @@ export class UserService {
       updateUserDto.password = await bcrypt.hash(updateUserDto.password, saltOrRounds);
     }
     return this.userRepository.findOneAndUpdate({ email });
-  }
+  }m
 
   async login(email: string, password: string) {
     
