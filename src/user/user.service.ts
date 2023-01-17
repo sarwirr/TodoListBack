@@ -5,18 +5,23 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { User, UserDocument } from './entities/user.entity';
 import * as bcrypt from 'bcrypt';
+
 const hat = require('hat');
 
 
 @Injectable()
 export class UserService {
+  jwtService: any;
   constructor(@InjectModel(User.name) private userRepository: Model<UserDocument>) { }
+
+ 
 
   async register(createUserDto: CreateUserDto) {
 
     const saltOrRounds = 10;
     createUserDto.password = await bcrypt.hash(createUserDto.password, saltOrRounds);
     return this.userRepository.create({ ...createUserDto, token: hat() });
+
   }
 
   async findAll(): Promise<User[]> {
@@ -34,16 +39,21 @@ export class UserService {
       updateUserDto.password = await bcrypt.hash(updateUserDto.password, saltOrRounds);
     }
     return this.userRepository.findOneAndUpdate({ email });
-  }m
+  }
+
+ 
 
   async login(email: string, password: string) {
+
     
     const user = await this.userRepository.findOne({ email });
-    if (user) {
+    
+     if (user) {
       const match = await bcrypt.compare(password, user.password);
 
       if (match) {
-        return ({ token: user.token });
+        
+        return ({token: user.token });      
       }
       else {
         throw new UnauthorizedException('your password is invalid')
@@ -57,4 +67,7 @@ export class UserService {
   remove(email: string) {
     return this.userRepository.findOneAndDelete({ email });
   }
+
+   
+ 
 }
