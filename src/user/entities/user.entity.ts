@@ -6,6 +6,12 @@ export type UserDocument = HydratedDocument<User>;
 
 @Schema()
 export class User {
+    // save() {
+    //   throw new Error('Method not implemented.');
+    // }
+
+    _id;
+    
     @Prop({
         required: true
     })

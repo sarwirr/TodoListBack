@@ -15,14 +15,16 @@ export class AuthService {
     if (user) {
     const match = await bcrypt.compare(password, user.password);
     if (match) {
-      const { password, ...result } = user;
-      return result;
+      // console.log(user._id.toString());
+      
+      return { username: user.name, email : user.email , id: user._id.toString() };
     }}
     return null;
   }
 
   async login(user: any) {
-    const payload = { username: user.name, sub: user.email};
+  //  console.log(user);
+    const payload = { username: user.username, email : user.email , userId: user.id};
     return {
       access_token: this.jwtService.sign(payload),
     };
