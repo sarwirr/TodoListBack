@@ -25,8 +25,8 @@ export class UserController {
   }
 
   @Get('findalltodos')
-  findAllTodos(@Param('id') id :any ) {
-    return this.userService.findAllTodos(id);
+  findAllTodos(@Request() req ) {
+    return this.userService.findAllTodos(req.user.userId);
   }
 
   @Get('findUserbyId/:id')
