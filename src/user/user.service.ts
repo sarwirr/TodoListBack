@@ -40,6 +40,16 @@ export class UserService {
     return this.userRepository.findOne({ _id :id}).populate('todolist').exec();
   }
 
+  async findnameofUserbyId(id: string) {
+    const user = await this.userRepository.findOne({ _id :id}).populate('name').exec();
+    return user;
+   
+  }
+
+  async showmeroles(id: string){
+    const user = await this.userRepository.findOne({ _id :id});
+    return ({roles: user.roles});
+  }
 
 
   async findOne(email: string): Promise<User | null> {

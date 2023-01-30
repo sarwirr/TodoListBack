@@ -27,8 +27,22 @@ export class Todo1Service {
     
   }
 
+  async createforuser(createTodo1Dto: CreateTodo1Dto , id:any ) {
+    
+    console.log(id);
+    const user = await this.us.findUserbyId(id);
+    
+    
+    const createdtodo = new this.todoModel({...createTodo1Dto, owner: user._id} );
+    const savedtodo = await createdtodo.save();
+    
+    user.todolist.push(savedtodo);
+    await this.us.update(user.email, { todolist: user.todolist } as UpdateTodo1Dto);
+    return savedtodo;
+  }
+
   async findAll(): Promise<Todo[]> {
-    return this.todoModel.find();
+    return this.todoModel.find().populate('owner').exec();
   }
 
   async findOne(id: string): Promise<Todo> {

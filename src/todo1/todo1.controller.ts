@@ -27,7 +27,11 @@ export class Todo1Controller {
     return this.todo1Service.create(createTodo1Dto, req.user.userId);
   }
 
-  
+  @Post('createforuser/:id')
+  createforuser(@Body() createTodo1Dto: CreateTodo1Dto, @Param('id') id: string) {
+    return this.todo1Service.createforuser(createTodo1Dto, id);
+  }
+
 
   @Get()
   findAll() {

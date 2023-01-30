@@ -17,16 +17,18 @@ export class AuthService {
     if (match) {
       // console.log(user._id.toString());
       
-      return { username: user.name, email : user.email , id: user._id.toString() };
+      return { username: user.name, email : user.email , id: user._id.toString() , roles:user.roles };
     }}
     return null;
   }
 
   async login(user: any) {
   //  console.log(user);
-    const payload = { username: user.username, email : user.email , userId: user.id};
+    const payload = { username: user.username, email : user.email , userId: user.id, roles:user.roles};
+   // console.log(payload);
     return {
       access_token: this.jwtService.sign(payload),
+      user
     };
   }
 }
