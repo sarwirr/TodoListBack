@@ -29,10 +29,10 @@ export class UserService {
     return this.userRepository.find();
   }
 
-  async findAllTodos(id:string): Promise<Todo[]> {
-    const user  = await this.userRepository.findOne({ _id :id}).populate('todolist').exec();
-    
-    return user.todolist;
+  async findAllTodos(id:string): Promise<any> {
+    const user  = await this.userRepository.findOne({ _id :id})
+   
+    return user;
   }
 
   async findUserbyId(id: string): Promise<User> {

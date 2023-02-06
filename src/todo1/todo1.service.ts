@@ -47,7 +47,7 @@ export class Todo1Service {
 
   async findOne(id: string): Promise<Todo> {
     return this.todoModel.findOne({
-      where: { _id: id },
+       _id: id 
     });
   }
 

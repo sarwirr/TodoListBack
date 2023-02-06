@@ -10,6 +10,7 @@ import { todo1Middleware } from './todo1/todo1.middleware';
 import { APP_GUARD } from '@nestjs/core';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
+import { NotificationModule } from './notification/notification.module';
 
 
 @Module({
@@ -20,6 +21,7 @@ import { AuthModule } from './auth/auth.module';
     ),
     UserModule,
     AuthModule,
+    NotificationModule,
   ],
   controllers: [AppController, Todo1Controller],
   providers: [AppService],
