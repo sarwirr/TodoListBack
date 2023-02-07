@@ -16,7 +16,7 @@ export class Todo {
   @Prop()
   description: string;
 
-  @ Prop()
+  @Prop()
   status: boolean;
 
   @Prop()
@@ -36,6 +36,7 @@ export class Todo {
 })
   owner: User;
 
+  
 
 }
 

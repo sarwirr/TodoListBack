@@ -30,9 +30,8 @@ export class UserService {
   }
 
   async findAllTodos(id:string): Promise<any> {
-    const user  = await this.userRepository.findOne({ _id :id})
-   
-    return user;
+    const user  = await this.userRepository.findOne({ _id :id}).populate('todolist').exec();
+    return user.todolist;
   }
 
   async findUserbyId(id: string): Promise<User> {

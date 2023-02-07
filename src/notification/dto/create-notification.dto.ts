@@ -1,1 +1,7 @@
-export class CreateNotificationDto {}
+export class CreateNotificationDto {
+
+    description: string;
+    user: string;
+
+
+}

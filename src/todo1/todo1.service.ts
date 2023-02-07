@@ -7,6 +7,7 @@ import { UpdateTodo1Dto } from './dto/update-todo1.dto';
 import { Todo, TodoDocument } from './entities/todo1.entity';
 import { User, UserDocument } from 'src/user/entities/user.entity';
 import { UserService } from 'src/user/user.service';
+import { NotificationService } from 'src/notification/notification.service';
 
 
 @Injectable()
@@ -14,7 +15,8 @@ export class Todo1Service {
   todoRepository: any;
   constructor(@InjectModel(Todo.name) private todoModel: Model<TodoDocument>,
   @InjectModel(User.name) private userRepository: Model<UserDocument>,
-  private readonly us : UserService) {}
+  private readonly us : UserService,
+  private readonly ns: NotificationService) {}
 
   async create(createTodo1Dto: CreateTodo1Dto , id:any ) {
     const user = await this.us.findUserbyId(id);
@@ -29,7 +31,7 @@ export class Todo1Service {
 
   async createforuser(createTodo1Dto: CreateTodo1Dto , id:any ) {
     
-    console.log(id);
+    
     const user = await this.us.findUserbyId(id);
     
     
@@ -38,6 +40,14 @@ export class Todo1Service {
     
     user.todolist.push(savedtodo);
     await this.us.update(user.email, { todolist: user.todolist } as UpdateTodo1Dto);
+
+    // send notification to user
+
+    this.ns.create({
+      description: 'You have a new todo',
+      user: user.name,
+    }, user._id);
+    
     return savedtodo;
   }
 

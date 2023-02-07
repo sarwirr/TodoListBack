@@ -5,9 +5,10 @@ import { Todo1Controller } from './todo1.controller';
 import { Todo, TodoSchema } from './entities/todo1.entity';
 import { UserModule } from 'src/user/user.module';
 import { User, UserSchema } from 'src/user/entities/user.entity';
+import { NotificationModule } from 'src/notification/notification.module';
 
 @Module({
-  imports: [UserModule,
+  imports: [UserModule,NotificationModule,
     MongooseModule.forFeature([{ name: Todo.name, schema: TodoSchema }]),
     MongooseModule.forFeature([{ name: User.name, schema: UserSchema }])
   ],

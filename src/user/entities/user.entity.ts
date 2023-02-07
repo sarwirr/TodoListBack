@@ -2,7 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { HydratedDocument } from 'mongoose';
 import { Todo } from 'src/todo1/entities/todo1.entity';
 import { Roles } from 'src/roles.enum';
-
+import { Notification } from 'src/notification/entities/notification.entity';
 export type UserDocument = HydratedDocument<User>;
 
 @Schema()
@@ -30,6 +30,13 @@ export class User {
         type: [{ type: mongoose.Schema.Types.ObjectId, ref: () => Todo }]
     })
     todolist: Todo[];
+
+
+    @Prop({
+        type: [{ type: mongoose.Schema.Types.ObjectId, ref: () => Notification }]
+    })
+    notification: Notification[];
+
 
     @Prop()
     token: string;
