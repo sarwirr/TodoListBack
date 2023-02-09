@@ -44,7 +44,7 @@ export class Todo1Service {
     // send notification to user
 
     this.ns.create({
-      description: 'You have a new todo',
+      description: `You have a new todo : ${savedtodo.name}`,
       user: user.name,
     }, user._id);
     
