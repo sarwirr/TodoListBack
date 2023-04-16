@@ -40,9 +40,7 @@ export class Todo1Service {
     
     user.todolist.push(savedtodo);
     await this.us.update(user.email, { todolist: user.todolist } as UpdateTodo1Dto);
-
-    // send notification to user
-
+    
     this.ns.create({
       description: `You have a new todo : ${savedtodo.name}`,
       user: user.name,

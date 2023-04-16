@@ -12,7 +12,8 @@ import { UpdateUserDto } from 'src/user/dto/update-user.dto';
 export class NotificationService {
   constructor(@InjectModel(Notification.name) private NotifModel: Model<NotifDocument>,
   @InjectModel(User.name) private userRepository: Model<UserDocument>,
-  private readonly us: UserService) { }
+  private readonly us: UserService,
+ ) { }
 
   async create(createNotificationDto: CreateNotificationDto , id : any): Promise <Notification> {
     const user = await this.us.findUserbyId(id);
